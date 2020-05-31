@@ -26,7 +26,7 @@ const Line = styled.div`
   margin: 10px -10px;
 `;
 
-const KittyCard: React.FC<Props> = ({ kitty: maybeKitty }: Props) => {
+const KittyCard: React.FC<Props> = ({ kitty: maybeKitty, kittyId }: Props) => {
   if (maybeKitty?.isSome) {
     const kitty = maybeKitty.unwrap();
 
@@ -34,10 +34,13 @@ const KittyCard: React.FC<Props> = ({ kitty: maybeKitty }: Props) => {
       <Wrapper>
         <StyledKittyAvatar dna={kitty.data.toU8a()} />
         <Line />
-        <label>Owner</label>
-        <AddressMini
-          value={kitty.owner}
-        />
+        <label>Kitty ID: {kittyId.toString()}</label>
+        <label>
+           Owner:
+          <AddressMini
+            value={kitty.owner}
+          />
+        </label>
       </Wrapper>
     );
   }
