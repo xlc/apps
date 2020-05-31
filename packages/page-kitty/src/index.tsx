@@ -4,7 +4,8 @@
 import React, { useState } from 'react';
 import { AppProps as Props } from '@polkadot/react-components/types';
 import { registry } from '@polkadot/react-api';
-import KittyAvatar from './KittyAvatar';
+import { useApi } from '@polkadot/react-hooks';
+import KittyViewer from './KittyViewer';
 
 import AccountSelector from './AccountSelector';
 
@@ -26,10 +27,13 @@ registry.register({
 function TemplateApp ({ className }: Props): React.ReactElement<Props> {
   const [accountId, setAccountId] = useState<string | null>(null);
 
+  const { api } = useApi();
+  const kitties = [api.registry.createType('Kitty' as any, [1]), api.registry.createType('Kitty' as any, [2]), api.registry.createType('Kitty' as any, [3])];
+
   return (
     <main className={className}>
       <AccountSelector onChange={setAccountId} />
-      <KittyAvatar dna={[]} />
+      <KittyViewer kitties={kitties} />
     </main>
   );
 }
