@@ -9,6 +9,7 @@ import BN from 'bn.js';
 import { withCalls } from '@polkadot/react-api/hoc';
 
 import KittyCard from './KittyCard';
+import OwnedKittyViewer from './OwnedKittyViewer';
 
 const Wrapper = styled.section``;
 const KittiesWrapper = styled.div`
@@ -16,11 +17,12 @@ const KittiesWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-interface Props {
-  kittiesCount: BN;
-}
+type Props = {
+  kittiesCount?: BN,
+  accountId: string | null,
+};
 
-const KittyViewer: React.FC<Props> = ({ kittiesCount }: Props) => {
+const KittyViewer: React.FC<Props> = ({ accountId, kittiesCount }: Props) => {
   const count = kittiesCount ? kittiesCount.toNumber() : 0;
   const kitties = [];
 
@@ -36,12 +38,18 @@ const KittyViewer: React.FC<Props> = ({ kittiesCount }: Props) => {
   return (
     <Wrapper>
       <h1>Substrate Kitties</h1>
-      <h2>
-          Total kitties count: {count}
-      </h2>
-      <KittiesWrapper>
-        { kitties }
-      </KittiesWrapper>
+      <OwnedKittyViewer
+        accountId={accountId}
+        key={accountId || ''}
+      />
+      <div>
+        <h2>
+           Total kitties count: {count}
+        </h2>
+        <KittiesWrapper>
+          { kitties }
+        </KittiesWrapper>
+      </div>
     </Wrapper>
   );
 };

@@ -31,7 +31,7 @@ function TemplateApp ({ className }: Props): React.ReactElement<Props> {
     <main className={className}>
       <AccountSelector onChange={setAccountId} />
       <KittyActions accountId={accountId} />
-      <KittyViewer />
+      <KittyViewer accountId={accountId} />
     </main>
   );
 }

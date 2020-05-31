@@ -7,7 +7,7 @@ import { withCalls } from '@polkadot/react-api/hoc';
 import { TokenInfo } from './types';
 
 export type Props = {
-  kittyId: BN,
+  kittyId: BN | string,
   kitty?: Option<TokenInfo>
 };
 

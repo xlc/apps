@@ -5,7 +5,7 @@ import React from 'react';
 import { Button, TxButton } from '@polkadot/react-components';
 
  type Props = {
-   accountId?: string
+   accountId: string | null
  };
 
 const KittyActions: React.FC<Props> = ({ accountId }: Props) => (
