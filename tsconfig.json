@@ -8,6 +8,8 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
+      "@polkadot/app-kitty": [ "packages/page-kitty/src" ],
+      "@polkadot/app-kitty/*": [ "packages/page-kitty/src/*" ],
       "@polkadot/apps/*": ["packages/apps/src/*"],
       "@polkadot/apps": ["packages/apps/src"],
       "@polkadot/apps-config/*": [ "packages/apps-config/src/*" ],

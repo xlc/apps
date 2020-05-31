@@ -27,9 +27,11 @@ import sudo from './sudo';
 import techcomm from './techcomm';
 import transfer from './transfer';
 import treasury from './treasury';
+import kitty from './kitty';
 
 export default function create (t: TFunction): Routes {
   return [
+    kitty(t),
     accounts(t),
     addresses(t),
     explorer(t),

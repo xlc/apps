@@ -2267,6 +2267,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@polkadot/app-kitty@workspace:packages/page-kitty":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/app-kitty@workspace:packages/page-kitty"
+  dependencies:
+    "@babel/runtime": ^7.12.1
+    "@polkadot/react-components": 0.63.2-19
+  languageName: unknown
+  linkType: soft
+
 "@polkadot/app-parachains@workspace:packages/page-parachains":
   version: 0.0.0-use.local
   resolution: "@polkadot/app-parachains@workspace:packages/page-parachains"
