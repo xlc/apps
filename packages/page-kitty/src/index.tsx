@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import { AppProps as Props } from '@polkadot/react-components/types';
 import { registry } from '@polkadot/react-api';
+import KittyAvatar from './KittyAvatar';
 
 import AccountSelector from './AccountSelector';
 
@@ -28,6 +29,7 @@ function TemplateApp ({ className }: Props): React.ReactElement<Props> {
   return (
     <main className={className}>
       <AccountSelector onChange={setAccountId} />
+      <KittyAvatar dna={[]} />
     </main>
   );
 }
