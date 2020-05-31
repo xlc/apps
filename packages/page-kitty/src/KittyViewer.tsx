@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import BN from 'bn.js';
 import { withCalls } from '@polkadot/react-api/hoc';
 
-import LoadKittyAvatar from './LoadKittyAvatar';
+import KittyCard from './KittyCard';
 
 const Wrapper = styled.section``;
 const KittiesWrapper = styled.div`
@@ -26,7 +26,7 @@ const KittyViewer: React.FC<Props> = ({ kittiesCount }: Props) => {
 
   for (let i = 0; i < count; ++i) {
     kitties.push(
-      <LoadKittyAvatar
+      <KittyCard
         key={i}
         kittyId={new BN(i)}
       />
