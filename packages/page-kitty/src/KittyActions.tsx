@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import BN from 'bn.js';
-import { Button, TxButton, InputNumber } from '@polkadot/react-components';
+import { Button, TxButton, InputNumber, InputAddress } from '@polkadot/react-components';
 
 type Props = {
   accountId: string | null
@@ -12,6 +12,8 @@ type Props = {
 const KittyActions: React.FC<Props> = ({ accountId }: Props) => {
   const [parent1, setParent1] = useState<BN | undefined>(undefined);
   const [parent2, setParent2] = useState<BN | undefined>(undefined);
+  const [recipientId, setRecipientId] = useState<BN | null>(null);
+  const [transferKittyId, setTransferKittyId] = useState<BN | undefined>(undefined);
 
   return (
     <section>
@@ -46,6 +48,27 @@ const KittyActions: React.FC<Props> = ({ accountId }: Props) => {
               label='Breed Kitty'
               params={[parent1, parent2]}
               tx='kitties.breed'
+            />
+          </Button.Group>
+        </div>
+      </div>
+      <h2>Transfer Kitty</h2>
+      <div className='ui--row'>
+        <div className='large'>
+          <InputAddress
+            label='recipient address'
+            onChange={setRecipientId}
+          />
+          <InputNumber
+            label='Kitty ID to send'
+            onChange={setTransferKittyId}
+          />
+          <Button.Group>
+            <TxButton
+              accountId={accountId}
+              label='Transfer Kitty'
+              params={[recipientId, transferKittyId]}
+              tx='kitties.transfer'
             />
           </Button.Group>
         </div>
