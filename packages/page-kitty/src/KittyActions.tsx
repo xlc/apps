@@ -12,7 +12,7 @@ type Props = {
 const KittyActions: React.FC<Props> = ({ accountId }: Props) => {
   const [parent1, setParent1] = useState<BN | undefined>(undefined);
   const [parent2, setParent2] = useState<BN | undefined>(undefined);
-  const [recipientId, setRecipientId] = useState<BN | null>(null);
+  const [recipientId, setRecipientId] = useState<string| null>(null);
   const [transferKittyId, setTransferKittyId] = useState<BN | undefined>(undefined);
 
   return (
