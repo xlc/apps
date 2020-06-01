@@ -29,8 +29,10 @@ const KittyViewer: React.FC<Props> = ({ accountId, kittiesCount }: Props) => {
   for (let i = 0; i < count; ++i) {
     kitties.push(
       <KittyCard
+        accountId={accountId}
         key={i}
         kittyId={new BN(i)}
+        showBuy={true}
       />
     );
   }

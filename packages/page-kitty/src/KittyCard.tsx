@@ -27,12 +27,13 @@ const Line = styled.div`
   margin: 10px -10px;
 `;
 
- type Props = WithKittyProps & {
-   showUnlist?: boolean,
-   accountId: string | null,
- };
+type Props = WithKittyProps & {
+  showUnlist?: boolean,
+  showBuy?: boolean,
+  accountId: string | null,
+};
 
-const Price: React.FC<Props> = ({ accountId, kittyId, price, showUnlist }: Props) => {
+const Price: React.FC<Props> = ({ accountId, kitty, kittyId, price, showBuy, showUnlist }: Props) => {
   if (price && price.isSome) {
     const value = price.unwrap();
 
@@ -47,6 +48,14 @@ const Price: React.FC<Props> = ({ accountId, kittyId, price, showUnlist }: Props
             tx='kitties.setPrice'
           />
         }
+        {showBuy &&
+           <TxButton
+             accountId={accountId}
+             label='Buy'
+             params={[kitty?.unwrap().owner, kittyId, value]}
+             tx='kitties.buy'
+           />
+        }
       </>
     );
   }
@@ -54,7 +63,7 @@ const Price: React.FC<Props> = ({ accountId, kittyId, price, showUnlist }: Props
   return <label>Not for sale</label>;
 };
 
-const KittyCard: React.FC<Props> = ({ accountId, kitty: maybeKitty, kittyId, price, showUnlist }: Props) => {
+const KittyCard: React.FC<Props> = ({ kitty: maybeKitty, kittyId, ...others }: Props) => {
   if (maybeKitty?.isSome) {
     const kitty = maybeKitty.unwrap();
     const dna = kitty.data.toU8a();
@@ -73,7 +82,7 @@ const KittyCard: React.FC<Props> = ({ accountId, kitty: maybeKitty, kittyId, pri
         </label>
         <label>DNA: {u8aToHex(dna)}</label>
         <label>Gender: {gender}</label>
-        <Price {...{ accountId, kittyId, price, showUnlist }}/>
+        <Price {...{ kitty: maybeKitty, kittyId, ...others }}/>
       </Wrapper>
     );
   }
@@ -81,4 +90,4 @@ const KittyCard: React.FC<Props> = ({ accountId, kitty: maybeKitty, kittyId, pri
   return <div>Loading...</div>;
 };
 
-export default withKitty(KittyCard as React.FC<WithKittyProps>) as React.FC<Props>;
+export default withKitty(KittyCard as React.FC<WithKittyProps>) as React.ComponentType<Props>;
