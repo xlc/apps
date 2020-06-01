@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import BN from 'bn.js';
-import { Button, TxButton, InputNumber, InputAddress } from '@polkadot/react-components';
+import { Button, TxButton, InputNumber, InputAddress, InputBalance } from '@polkadot/react-components';
 
 type Props = {
   accountId: string | null
@@ -14,6 +14,8 @@ const KittyActions: React.FC<Props> = ({ accountId }: Props) => {
   const [parent2, setParent2] = useState<BN | undefined>(undefined);
   const [recipientId, setRecipientId] = useState<string| null>(null);
   const [transferKittyId, setTransferKittyId] = useState<BN | undefined>(undefined);
+  const [sellKittyId, setSellKittyId] = useState<BN | undefined>(undefined);
+  const [sellKittyPrice, setSellKittyPrice] = useState<BN | undefined>(undefined);
 
   return (
     <section>
@@ -69,6 +71,27 @@ const KittyActions: React.FC<Props> = ({ accountId }: Props) => {
               label='Transfer Kitty'
               params={[recipientId, transferKittyId]}
               tx='kitties.transfer'
+            />
+          </Button.Group>
+        </div>
+      </div>
+      <h2>Sell Kitty</h2>
+      <div className='ui--row'>
+        <div className='large'>
+          <InputNumber
+            label='Kitty ID to sell'
+            onChange={setSellKittyId}
+          />
+          <InputBalance
+            label='Kitty Price to sell'
+            onChange={setSellKittyPrice}
+          />
+          <Button.Group>
+            <TxButton
+              accountId={accountId}
+              label='Set Kitty Price'
+              params={[sellKittyId, sellKittyPrice]}
+              tx='kitties.setPrice'
             />
           </Button.Group>
         </div>
