@@ -3,8 +3,24 @@
 
 import React, { useState } from 'react';
 import { AppProps as Props } from '@polkadot/react-components/types';
+import { registry } from '@polkadot/react-api';
 
 import AccountSelector from './AccountSelector';
+
+registry.register({
+  ClassId: 'u32',
+  ClassInfoOf: 'ClassId',
+  Kitty: '[u8; 16]',
+  KittyIndex: 'u32',
+  KittyIndexOf: 'KittyIndex',
+  TokenId: 'u32',
+  TokenInfo: {
+    metadata: 'Vec<u8>',
+    owner: 'AccountId',
+    data: 'Kitty' // eslint-disable-line
+  },
+  TokenInfoOf: 'TokenInfo'
+});
 
 function TemplateApp ({ className }: Props): React.ReactElement<Props> {
   const [accountId, setAccountId] = useState<string | null>(null);
