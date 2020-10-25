@@ -31,6 +31,7 @@ const KittyCard: React.FC<Props> = ({ kitty: maybeKitty, kittyId }: Props) => {
   if (maybeKitty?.isSome) {
     const kitty = maybeKitty.unwrap();
     const dna = kitty.data.toU8a();
+    const gender = dna[0] % 2 === 0 ? 'Male' : 'Female';
 
     return (
       <Wrapper>
@@ -44,6 +45,7 @@ const KittyCard: React.FC<Props> = ({ kitty: maybeKitty, kittyId }: Props) => {
           />
         </label>
         <label>DNA: {u8aToHex(dna)}</label>
+        <label>Gender: {gender}</label>
       </Wrapper>
     );
   }
